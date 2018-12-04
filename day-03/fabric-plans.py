@@ -27,11 +27,11 @@ def claim_without_overlap(fin: Path) -> Set[int]:
     all_ids = set()
     with fin.open() as claims:
         for claim in claims:
-            id_, left, top, width, height = get_claim(claim)
-            all_ids.add(id_)
+            claim_id, left, top, width, height = get_claim(claim)
+            all_ids.add(claim_id)
             for x in range(left, left + width):
                 for y in range(top, top + height):
-                    claimed[x, y].add(id_)
+                    claimed[x, y].add(claim_id)
 
     for ids in claimed.values():
         if len(ids) > 1:
